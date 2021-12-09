@@ -1,5 +1,32 @@
 const socket = io();
 
+// document.querySelector("#nmUser").value = prompt("Ingrese su nombre");
+Swal.fire("Any fool can use a computer");
+
+(async () => {
+  const { value: url } = await Swal.fire({
+    width: 500,
+    padding: "3em",
+    color: "#716add",
+    background: "#fff url(/images/trees.png)",
+    backdrop: `
+    rgba(0,0,123,0.4)
+    url("https://media1.giphy.com/media/IeKlzSDKvYNbtlYPvb/giphy.gif?cid=ecf05e47sl3w2m8jnv6urnovjleeabrg9d1lj2uwaxchp2pl&rid=giphy.gif&ct=s")
+    
+    top
+    no-repeat
+    
+  `,
+    input: "text",
+    inputPlaceholder: "Enter your userName",
+  });
+
+  if (url) {
+    Swal.fire(`userName: ${url}`);
+  }
+  document.querySelector("#nmUser").value = url;
+})();
+
 socket.on("message_back", (data) => {
   console.log(data);
   render(data);
